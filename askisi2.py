@@ -8,9 +8,10 @@ year=date.today().year
 
 numtemp = []
 num = []
+num_list = []
 while True:
     try:
-        x = 10 - len(num)
+        x = 10 - len(num_list)
         if len(numtemp) < 10:
             print(
                 "Give", x, "unique KINO numbers [1,80] and between them use space ' '")

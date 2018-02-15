@@ -17,16 +17,21 @@ try:
     for tweet in tweepy.Cursor(api.user_timeline, id=twitid).items(10):
         data=json.dumps(tweet._json)
         data1=json.loads(data)
-        text=data1['text']
+        text1=data1['text']
+        text=re.sub(r" http\S+","", text1)
         list_text=re.split(r'\W+', text)
+        list_text.remove("")
         for i in list_text:
             maxnum.append(0)
         flist+=list_text
-    for y in len(flist):
-        if flist[y] in flist[y:]:
-            maxnum[y]+=1
+    for y in range(len(flist)):
+        for j in range(y+1,len(flist)):
+            if flist[y]==flist[j]:
+                maxnum[y]+=1
     if max(maxnum)!=0:
-        print (flist.index(max(maxnum)))
+        for y in range(len(maxnum)):
+            if max(maxnum)==maxnum[y]:
+                print (flist[maxnum.index(max(maxnum))])
     else:
         print ("No word is repeated")
 except :

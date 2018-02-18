@@ -6,42 +6,56 @@ day=date.today().day
 month=date.today().month
 year=date.today().year
 
-numtemp = []
 num = []
-num_list = []
+numtemp=[]
+num_list=[]
+num2=[]
 while True:
     try:
-        x = 10 - len(num_list)
-        if len(numtemp) < 10:
-            print(
-                "Give", x, "unique KINO numbers [1,80] and between them use space ' '")
-            numtemp = input().split(" ")
-        if len(numtemp) > 10:
-            dia = len(numtemp) - 10
-            for y in range(dia):
-                del numtemp[-1]
-        for t in range(len(numtemp)):
-            if numtemp[t] not in num:
-                num.append(numtemp[t])
-        num_list = list(map(int, num))
-        if len(num_list) == 10:
-            counter = 0
-            for z in range(10):
-                if num_list[z] > 0 and num_list[z] <= 80:
-                    counter += 1
-                else:
-                    num_list[z] = 0
-            if counter == 10:
-                break
-            for o in range(10 - counter):
-                num_list.remove(0)
+        if len(num)==0:
+            print("Give 10 unique KINO numbers [1,80] and between them use space ' '")
+            num = input().split(" ")
+        else:
+            if len(num)<10:
+                x=10-len(num2)
+                print("Give ", x ," unique KINO numbers [1,80] and between them use space ' '")
+                numtemp=input().split(" ")
+                numtemp=list(map(int,numtemp))
+        num+=numtemp
         del numtemp[:]
-        numtemp = num_list
+        del num_list[:]
+        num_list=list(map(int,num))
+        for t in range(len(num_list)):
+            if num_list[t] not in num2:
+                num2.append(num_list[t])
+        if len(num2)>10:
+            dia=len(num2)-10
+            for a in range(dia):
+                    del num2[-1]
+        if len(num2)==10:
+            counter=0
+            for z in range(10):
+                if int(num2[z])>=1 and int(num2[z])<=80:
+                    counter+=1
+                else:
+                    num2[z]=0
+            if counter==10:
+                break
+            else:
+                for o in range(10-counter):
+                    num2.remove(0)
+        del num[:]
+        num=num2
     except (ValueError, TypeError):
         print("Wrong input...Try again")
-        del numtemp[:]
         del num[:]
+        del num2[:]
+        del numtemp[:]
         del num_list[:]
+
+del num_list
+num_list=num
+print ("Your numbers is ", num_list)
 day_win=[0]
 
 for x in range(1, day+1):

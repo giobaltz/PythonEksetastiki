@@ -43,14 +43,14 @@ def symbols(flist, p, flag, while_loop, llist):
                 del x[:]
                 del a
         p+=1
-    return(flist, p, flag, while_loop, llist);
+    return(flist, p, flag, while_loop, llist)
 
 def loop(flist, p, flag, while_loop, llist):
-    while flist[p]=="]" and while_loop==False:
+    while flist[p]!="]" and while_loop==False:
         symbols(flist, p, flag, while_loop,llist)
         if flist[p]=="[":
-            loop(flist, p, flag)
-    return(flist, p, flag, while_loop, llist);
+            loop(flist, p, flag, while_loop, llist)
+    return(flist, p, flag, while_loop, llist)
 
 if len(flist)<=30000:
     llist=[]
@@ -68,11 +68,11 @@ if len(flist)<=30000:
         while p<=len(flist) and while_loop==False:
             symbols(flist, p, flag, while_loop, llist)
             if flist[p]=="[":
-                loop(flist, p, flag, while_loop, llist)
-        f.close()   
+                loop(flist, p, flag, while_loop, llist)   
         if flag==True:
              print ("You break the limit...try again")
     else:
         print ("Error... problem with loops!")
 else:
     print ("The file has more than 30000 characters-positions")
+f.close()
